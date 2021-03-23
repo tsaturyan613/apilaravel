@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/services','ServiceController@index');
+Route::get('/contacts','ContactController@index');
+Route::post('/mail','SendMailController@send');
+Route::get('/blogs','BlogController@index');
