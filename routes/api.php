@@ -22,3 +22,7 @@ Route::get('/services','ServiceController@index');
 Route::get('/contacts','ContactController@index');
 Route::post('/mail','SendMailController@send');
 Route::get('/blogs','BlogController@index');
+Route::get('/workers','WorkerController@index');
+Route::get('/clients','ClientController@index');
+Route::get('/footer/contacts','ContactController@indexFooter');
+Route::get('/portfolios','PortfolioController@index');

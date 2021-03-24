@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::orderBy('id','desc')->first();
-        return response()->json($contacts);
-    }
 
-    public function indexFooter(){
-        $contacts = Contact::orderBy('id','desc')->first();
-        $body = [
-          'address'=>$contacts->address,
-          'phone'=>$contacts->phone_number_one,
-          'email'=>$contacts->email_one
-        ];
-
-        return response()->json($body);
+        $clients = Client::all();
+        return response()->json($clients);
     }
 
     /**

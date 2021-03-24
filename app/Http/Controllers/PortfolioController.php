@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class PortfolioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::orderBy('id','desc')->first();
-        return response()->json($contacts);
-    }
-
-    public function indexFooter(){
-        $contacts = Contact::orderBy('id','desc')->first();
-        $body = [
-          'address'=>$contacts->address,
-          'phone'=>$contacts->phone_number_one,
-          'email'=>$contacts->email_one
-        ];
-
-        return response()->json($body);
+        $portfolios = Portfolio::with('profession')
+            ->with('type')
+            ->get();
+        return response()->json($portfolios);
     }
 
     /**

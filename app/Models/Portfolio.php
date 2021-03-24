@@ -6,15 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Facades\Voyager;
 
-class Blog extends Model
+class Portfolio extends Model
 {
     use HasFactory;
+
+    protected $hidden=[
+        'profession_id',
+        'type_id'
+    ];
 
     protected $appends = [
         'image_url'
     ];
 
-    protected $casts =[
+    protected $casts = [
         'created_at' => 'datetime:Y-m-d',
     ];
 
@@ -22,4 +27,11 @@ class Blog extends Model
         return Voyager::image($this->image);
     }
 
+    public function profession(){
+        return $this->belongsTo(Profession::class);
+    }
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }
