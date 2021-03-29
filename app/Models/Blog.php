@@ -18,6 +18,9 @@ class Blog extends Model
         'created_at' => 'datetime:Y-m-d',
     ];
 
+    protected $hidden =[
+      'updated_at',
+    ];
     public function getImageUrlAttribute(){
         return Voyager::image($this->image);
     }

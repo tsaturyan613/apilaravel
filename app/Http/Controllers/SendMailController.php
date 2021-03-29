@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SendMailRequest;
+use App\Http\Requests\StorePostRequest;
 use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +20,10 @@ class SendMailController extends Controller
         return view('form');
     }
 
-    public function send(Request $request){
+    public function send(StorePostRequest $request){
+
+        $request->validated();
+
         $body = [
             'name' => $request->name,
             'email' => $request->email,
@@ -26,7 +31,9 @@ class SendMailController extends Controller
             'message' => $request->message
         ];
         Mail::to('tsaturyan.artash@mail.ru')->send(new SendMail($body));
+
         return response()->json($body);
+
     }
 
     /**

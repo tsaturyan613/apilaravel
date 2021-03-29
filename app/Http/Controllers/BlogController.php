@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BlogCollection;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
+//        return $blogs->toJson();
         return response()->json($blogs);
+//          return new BlogCollection(Blog::all());
     }
 
     /**

@@ -22,3 +22,6 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 Route::post('/send/email','SendMailController@send');
+Route::get('/form','SendMailController@index');
+Route::get('/middle','TestController@test');
+Route::post('/add/middle','TestController@testReq')->middleware('route');
